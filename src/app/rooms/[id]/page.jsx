@@ -7,7 +7,7 @@ const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
   const res = await fetch(`http://localhost:7000/rooms/${id}`);
   const room = await res.json();
-  console.log(room);
+  // console.log(room);
   return (
     <div className="max-w-7xl mx-auto mt-15 ">
       <div className=" ">

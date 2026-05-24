@@ -90,7 +90,7 @@ const Navbar = () => {
           {user && (
             <>
               <li>
-                <Link href="/my-booking">My Bookings</Link>
+                <Link href="/my-bookings">My Bookings</Link>
               </li>
               <li>
                 <Link href="/dashboard">Dashboard</Link>
@@ -186,7 +186,7 @@ const Navbar = () => {
 
           {user && (
             <>
-              <Link href="/my-booking" onClick={() => setIsOpen(false)}>
+              <Link href="/my-bookings" onClick={() => setIsOpen(false)}>
                 My Booking
               </Link>
               <Link href="/dashboard" onClick={() => setIsOpen(false)}>

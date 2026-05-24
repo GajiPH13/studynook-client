@@ -4,8 +4,8 @@ import { authClient } from "@/lib/auth-client";
 const RoomBookingForm = ({ room }) => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
-  console.log(user);
-  const { price,_id } = room;
+  // console.log(user);
+  const { price,_id,image } = room;
 
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [startTime, setStartTime] = useState("00:00");
@@ -23,13 +23,14 @@ const RoomBookingForm = ({ room }) => {
     const bookingData = {
       ...data, 
       roomId: _id,
-      roomPrice: price, 
-      userId: user.id,
-      userName: user.name,
-      userEmail: user.email,
-      userImage: user.image
+      roomPrice: price,
+      roomImage: image, 
+      userId: user?.id,
+      userName: user?.name,
+      userEmail: user?.email,
+      userImage: user?.image
     };
-    console.log(bookingData);
+    // console.log(bookingData);
 
     try {
       const res = await fetch("http://localhost:7000/bookings", {
