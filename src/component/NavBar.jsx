@@ -1,43 +1,6 @@
-// "use client";
-
-// import Link from 'next/link';
-// import React from 'react';
-// import { FaBookOpen } from 'react-icons/fa6';
-// import ThemeToggle from './ThemeToggle';
-
-// const NavBar = () => {
-//     return (
-//         <nav className="flex justify-between items-center p-4 shadow-lg px-10 overflow-hidden">
-//             <div className='flex gap-4 items-center'>
-//                 <div className="bg-[#4F5A2A] p-2 rounded-2xl">
-//               <FaBookOpen size={20} className="text-[#E8EDE0]" />
-
-//             </div>
-//             <p className='text-xl font-bold'>StudyNook</p>
-//             </div>
-//             <ul className="flex gap-4">
-//                 <li><Link href={"/"}>Home</Link></li>
-//                 <li><Link href={"/rooms"}>Rooms</Link></li>
-//                 <li><Link href={"/add-room"}>Add Room</Link></li>
-
-//             </ul>
-
-//             <ul className="flex gap-4 items-center">
-//                 <li><Link href={'/profile'}>Profile</Link></li>
-//                 <li><Link href={'/signup'}>Sign Up</Link></li>
-//                 <li><Link href={'/signin'}>Login</Link></li>
-//                 <li><ThemeToggle /></li>
-
-//             </ul>
-
-//         </nav>
-//     );
-// };
-
-// export default NavBar;
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Avatar, Button } from "@heroui/react";
+
 import { FaBookOpen } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,10 +9,14 @@ import router from "next/router";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import ThemeToggle from "./ThemeToggle";
+// import { DropDownPage } from "./DropDownPage";
+import { Avatar, Button, Dropdown, Label } from "@heroui/react";
+import { IoIosLogOut } from "react-icons/io";
 const Navbar = () => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   // console.log(userData);
   // const signOutMsg = async() => {
   //  await authClient.signOut();
@@ -84,9 +51,20 @@ const Navbar = () => {
           <li>
             <Link href="/rooms">Rooms</Link>
           </li>
-          <li>
-            <Link href="/add-room">Add Rooms</Link>
-          </li>
+          {!user && (
+            <>
+              <li>
+                <Link href="/signin">Add Rooms</Link>
+              </li>
+            </>
+          )}
+          {user && (
+            <>
+              <li>
+                <Link href="/add-room">Add Rooms</Link>
+              </li>
+            </>
+          )}
           {user && (
             <>
               <li>
@@ -96,11 +74,10 @@ const Navbar = () => {
                 <Link href="/dashboard">Dashboard</Link>
               </li>
               <li>
-            <Link href="/profile">Profile</Link>
-          </li>
+                <Link href="/profile">Profile</Link>
+              </li>
             </>
           )}
-          
         </ul>
 
         {/* Right Side */}
@@ -121,7 +98,59 @@ const Navbar = () => {
 
           {user && (
             <div className="hidden md:flex items-center gap-2">
-              <Avatar>
+              <Dropdown>
+                <Button aria-label="Menu" variant="secondary">
+                  <Avatar>
+                    <Avatar.Image
+                      alt={user.name}
+                      src={user.image}
+                      // for google login to show the avatar
+                      referrerPolicy="no-referrer"
+                    />
+                    <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
+                  </Avatar>
+                  <p>{user.name}</p>
+                </Button>
+                <Dropdown.Popover>
+                  <Dropdown.Menu
+                    onAction={(key) => console.log(`Selected: ${key}`)}
+                  >
+                    <Dropdown.Item
+                      id="new-file"
+                      textValue="New file"
+                      className="flex flex-col"
+                    >
+                      <Label>{user.name}</Label>
+                      <Label>{user.email}</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="copy-link" textValue="Copy link">
+                      <Label>My Listings</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="edit-file" textValue="Edit file">
+                      <Label>My Bookings</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      id="delete-file"
+                      textValue="Delete file"
+                      variant="danger"
+                    >
+                      <IoIosLogOut className="text-danger size-5" />
+                      <Button
+                        variant="outline"
+                        className="text-danger border-none rounded-md"
+                        onClick={async () => {
+                          await authClient.signOut();
+                          window.location.href = "/";
+                        }}
+                      >
+                        Sign Out
+                      </Button>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
+              {/* <DropDownPage user={user} /> */}
+              {/* <Avatar>
                 <Avatar.Image
                   alt={user.name}
                   src={user.image}
@@ -129,17 +158,8 @@ const Navbar = () => {
                   referrerPolicy="no-referrer"
                 />
                 <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
-              </Avatar>
-              <p>{user.name}</p>
-              <button
-                className="bg-[#88ABFD] text-white px-2 py-1 rounded text-sm cursor-pointer"
-                onClick={async () => {
-                  await authClient.signOut();
-                  window.location.href = "/signin";
-                }}
-              >
-                SignOut
-              </button>
+              </Avatar> */}
+              {/* <p>{user.name}</p> */}
             </div>
           )}
 
@@ -223,16 +243,19 @@ const Navbar = () => {
                 </Avatar>
                 <p>{user.name}</p>
               </div>
-              <button
-                className="bg-[#88ABFD] cursor-pointer text-white px-2 py-1 rounded mt-2"
+             <div className="flex items-center gap-2 ">
+               <IoIosLogOut className="text-danger size-5" />
+              <Button
+                variant="outline"
+                className="text-danger border-none rounded-md"
                 onClick={async () => {
                   await authClient.signOut();
-                  window.location.href = "/signin";
-                  toast.success("Sign out successful!");
+                  window.location.href = "/";
                 }}
               >
-                Logout
-              </button>
+                Sign Out
+              </Button>
+             </div>
             </>
           )}
         </div>

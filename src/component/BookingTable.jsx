@@ -45,7 +45,7 @@ const BookingTable = async ({ data }) => {
 
                   <Table.Cell>{user.userEmail}</Table.Cell>
                   <Table.Cell>
-                    <Link href={"/rooms"}>
+                    <Link href={`/rooms/${user.roomId}`}>
                       <Button variant="outline">Details</Button>
                     </Link>
                     <Link href={``}>

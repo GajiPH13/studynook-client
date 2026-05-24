@@ -12,13 +12,16 @@ import { authClient } from "@/lib/auth-client";
 const RoomDetailis = ({ room }) => {
   const userData = authClient.useSession();
     const user = userData.data?.user;
+    if (!user) {
+  return <p>Loading...</p>; // or null
+}
     const {name:userName, email, image} = user;
     console.log(user);
-  const router = useRouter();
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    router.push(`/rooms/${_id}`);
-  };
+  // const router = useRouter();
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   router.push(`/rooms/${_id}`);
+  // };
   const { name, description, floor, capacity, price, amenities } = room;
 
   return (
@@ -79,7 +82,7 @@ const RoomDetailis = ({ room }) => {
        
         <Modal>
           <Button
-            onSubmit={onSubmit}
+            
             className={"w-full  bg-[#4F5A2A] text-white"}
             variant="outline"
           >
@@ -102,22 +105,20 @@ const RoomDetailis = ({ room }) => {
                    </div>
                   </Surface>
                 </Modal.Body>
-                {/* <Modal.Footer>
-                  <Button slot="close" variant="secondary">
-                    Cancel
-                  </Button>
-                  <Button slot="close">Send Message</Button>
-                </Modal.Footer> */}
+               
               </Modal.Dialog>
             </Modal.Container>
           </Modal.Backdrop>
         </Modal>
 
         <div className="flex gap-4 items-center justify-center">
+
+        {user &&(
+           <>
           <div className="w-full bg-olive-100 h-40 mt-20 shadow-xl rounded-2xl">
            <Image 
            src={image} 
-           alt={name} 
+           alt={userName} 
            width={100} 
            height={100}/> 
         </div>
@@ -125,6 +126,13 @@ const RoomDetailis = ({ room }) => {
         <h2 className="text-2xl font-bold">{userName}</h2>
         <p>{email}</p>
         </div>
+        </>
+        )}
+        {!user &&(
+          <div>
+            <p className="text-2xl font-bold">Login to Book a Room</p>
+          </div>
+        )}
         </div>
       </div>
     </div>
