@@ -149,17 +149,7 @@ const Navbar = () => {
                   </Dropdown.Menu>
                 </Dropdown.Popover>
               </Dropdown>
-              {/* <DropDownPage user={user} /> */}
-              {/* <Avatar>
-                <Avatar.Image
-                  alt={user.name}
-                  src={user.image}
-                  // for google login to show the avatar
-                  referrerPolicy="no-referrer"
-                />
-                <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
-              </Avatar> */}
-              {/* <p>{user.name}</p> */}
+            
             </div>
           )}
 
