@@ -46,7 +46,7 @@ export default function SignInPage() {
 
   return (
     <div>
-      <Card className="border border-blue-300 mx-auto w-full max-w-md px-4 sm:px-6 py-8 sm:py-10 mt-15 shadow-2xl">
+      <Card className="border border-olive-300 mx-auto w-full max-w-md px-4 sm:px-6 py-8 sm:py-10 mt-15 shadow-2xl">
         <h1 className="text-center text-2xl font-bold">Sign In</h1>
 
         <Form className="w-full flex flex-col gap-4 mt-4" onSubmit={onSubmit}>
