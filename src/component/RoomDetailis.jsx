@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-
+// import { authClient } from "@/lib/auth-client";
 import { SlLayers } from "react-icons/sl";
 import { RxPeople } from "react-icons/rx";
 import RoomBookingForm from "./RoomBookingForm";
@@ -9,6 +9,9 @@ import { Button,  Modal, Surface  } from "@heroui/react";
 
 
 const RoomDetailis = ({ room }) => {
+  // const userData = authClient.useSession();
+  //   const user = userData.data?.user;
+  //   console.log(user);
   const { name, description, floor, capacity, price, amenities } = room;
 
   return (

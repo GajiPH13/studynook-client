@@ -1,8 +1,11 @@
 import { Button } from "@heroui/react";
 import React, { useState, useEffect } from "react";
-
+import { authClient } from "@/lib/auth-client";
 const RoomBookingForm = ({ room }) => {
-  const { price } = room;
+  const userData = authClient.useSession();
+  const user = userData.data?.user;
+  console.log(user);
+  const { price,_id } = room;
 
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [startTime, setStartTime] = useState("00:00");
@@ -15,8 +18,18 @@ const RoomBookingForm = ({ room }) => {
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-
-    console.log(data);
+    
+    // console.log(data);
+    const bookingData = {
+      ...data, 
+      roomId: _id,
+      roomPrice: price, 
+      userId: user.id,
+      userName: user.name,
+      userEmail: user.email,
+      userImage: user.image
+    };
+    console.log(bookingData);
 
     try {
       const res = await fetch("http://localhost:7000/bookings", {
@@ -24,7 +37,7 @@ const RoomBookingForm = ({ room }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(bookingData),
       });
 
       const result = await res.json();
