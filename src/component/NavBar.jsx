@@ -27,7 +27,7 @@ const Navbar = () => {
   //   }
   // }
   return (
-    <div className="border-b border-zinc-200 px-2  shadow-xl sticky top-0 overflow-hidden bg-white z-50">
+    <div className="border-b border-olive-200   shadow-xl sticky top-0 overflow-hidden bg-white opacity-95 z-50">
       <nav className="flex justify-between items-center py-3 max-w-7xl mx-auto w-full">
         {/* Logo */}
         <Link href="/">
@@ -98,8 +98,9 @@ const Navbar = () => {
 
           {user && (
             <div className="hidden md:flex items-center gap-2">
+              <ThemeToggle />
               <Dropdown>
-                <Button aria-label="Menu" variant="secondary">
+                <Button aria-label="Menu" variant="outline" className="px-0 pr-2 bg-[#9fafc4]">
                   <Avatar>
                     <Avatar.Image
                       alt={user.name}
@@ -109,7 +110,7 @@ const Navbar = () => {
                     />
                     <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
                   </Avatar>
-                  <p>{user.name}</p>
+                  <p className="text-md text-olive-600">{user.name}</p>
                 </Button>
                 <Dropdown.Popover>
                   <Dropdown.Menu

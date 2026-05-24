@@ -1,13 +1,13 @@
-import { Button, Table } from "@heroui/react";
+
 import Image from "next/image";
 import Link from "next/link";
+import {AlertDialog, Button, Table} from "@heroui/react";
+import DeleteModalPage from "./DeleteModalPage";
 
 const BookingTable = async ({ data }) => {
-  //     const { id } = await params;
-  //   const res = await fetch(`http://localhost:7000/rooms/${id}`);
-  //   const room = await res.json();
-  //     console.log(data);
-  //     console.log(room);
+  
+
+
   return (
     <div>
       <Table>
@@ -56,8 +56,9 @@ const BookingTable = async ({ data }) => {
                         Edit
                       </Button>
                     </Link>
-
-                    <Button variant="danger">Delete</Button>
+                    {/* Delete Alart */}
+                    <DeleteModalPage  id={user._id}/>
+                    {/* <Button  variant="danger">Delete</Button> */}
                   </Table.Cell>
                 </Table.Row>
               ))}

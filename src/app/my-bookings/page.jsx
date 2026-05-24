@@ -16,6 +16,7 @@ const MyBookingPage = async () => {
     return (
         <div className="max-w-7xl mx-auto mt-15 ">
             <h2 className="text-2xl font-bold ">My Bookings</h2>
+            
             <BookingTable data={data} />
         </div>
     );
