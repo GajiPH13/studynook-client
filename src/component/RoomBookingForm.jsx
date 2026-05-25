@@ -1,7 +1,7 @@
 import { Button } from "@heroui/react";
 import React, { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
-const RoomBookingForm = ({ room }) => {
+const RoomBookingForm = ({ room}) => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
   // console.log(user);
@@ -11,7 +11,7 @@ const RoomBookingForm = ({ room }) => {
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
   const [note, setNote] = useState("");
-  const [totalCost, setTotalCost] = useState(108);
+  const [totalCost, setTotalCost] = useState(0);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -56,6 +56,7 @@ const RoomBookingForm = ({ room }) => {
   const HOURLY_RATE = price;
 
   useEffect(() => {
+    
     const [startHours, startMinutes] = startTime.split(":").map(Number);
     const [endHours, endMinutes] = endTime.split(":").map(Number);
 

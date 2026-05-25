@@ -11,30 +11,36 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import { div, em } from "framer-motion/client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { GrGoogle } from "react-icons/gr";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function SignInPage() {
+  const router = useRouter();
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-    const { data, error } = await authClient.signIn.email({
-      email: email,
-      password: password,
+    const { error } = await authClient.signIn.email({
+      email,
+      password,
       callbackURL: "/",
     });
 
     if (!error) {
       toast.success("Sign in successful!");
+      router.push("/");
+      router.refresh();
+      return;
     }
 
-    if(error)toast.error("Email or password is incorrect!");
+    toast.error(error.message ?? "Email or password is incorrect!");
   };
  
 

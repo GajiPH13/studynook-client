@@ -58,23 +58,25 @@ const RoomDetailis = ({ room }) => {
             if (Array.isArray(amenities)) amenitiesList = amenities;
             else if (typeof amenities === "string" && amenities.trim())
               amenitiesList = amenities.split(",").map((s) => s.trim());
-            const visible = amenitiesList.slice(0, 3);
-            const extra = Math.max(0, amenitiesList.length - 3);
+            // const visible = amenitiesList.slice(0, 3);
+            // const extra = Math.max(0, amenitiesList.length - 3);
+            const visible = amenitiesList;
+
             return (
               <>
                 {visible.map((a) => (
                   <div
                     key={a}
-                    className="badge badge-outline text-sm px-3 py-1 mr-2"
+                    className="badge badge-outline text-sm px-3 py-1 mr-2 mb-2"
                   >
                     {a}
                   </div>
                 ))}
-                {extra > 0 && (
+                {/* {extra > 0 && (
                   <div className="badge badge-outline text-sm px-3 py-1">
                     +{extra}
                   </div>
-                )}
+                )} */}
               </>
             );
           })()}
