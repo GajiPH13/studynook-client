@@ -1,4 +1,8 @@
 "use client";
+// export const metadata = {
+//   title: "StudyNook-Sign In",
+//   description: "A Library Room Booking System for Students",
+// };
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {

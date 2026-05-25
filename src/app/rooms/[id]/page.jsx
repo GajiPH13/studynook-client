@@ -1,4 +1,7 @@
-import React from "react";
+export const metadata = {
+  title: "StudyNook-Room Details",
+  description: "A Library Room Booking System for Students",
+};
 import { BsArrowLeftCircle } from "react-icons/bs";
 import Link from "next/link";
 import RoomCard from "@/component/RoomCard";

@@ -1,4 +1,8 @@
 "use client";
+// export const metadata = {
+//   title: "StudyNook-Profile",
+//   description: "A Library Room Booking System for Students",
+// };
 import { Card } from "@heroui/react";
 import React from "react";
 import { authClient } from "@/lib/auth-client";

@@ -1,4 +1,8 @@
 "use client";
+// export const metadata = {
+//   title: "StudyNook-Add Room",
+//   description: "A Library Room Booking System for Students",
+// };
 import Amenities from "@/component/Amenities";
 import {
   Description,
