@@ -1,6 +1,7 @@
 import { Button } from "@heroui/react";
 import React, { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
+import { HiOutlineCalendarDays } from "react-icons/hi2";
 const RoomBookingForm = ({ room}) => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
@@ -207,7 +208,32 @@ const RoomBookingForm = ({ room}) => {
           </span>
         </div>
 
-        <Button type="submit">Book Room</Button>
+        <Button
+  type="submit"
+  className="
+    w-full
+    py-3.5
+    rounded-2xl
+    bg-gradient-to-r from-[#586235] to-[#6f7b46]
+    text-white
+    font-semibold
+    text-base
+    shadow-lg
+    hover:shadow-2xl
+    hover:scale-[1.02]
+    hover:from-[#4f582f]
+    hover:to-[#7d8a50]
+    active:scale-[0.98]
+    transition-all
+    duration-300
+    tracking-wide
+  "
+>
+  <span className="flex items-center justify-center gap-2">
+    <HiOutlineCalendarDays className="text-xl" />
+    Book Room
+  </span>
+</Button>
       </form>
     </div>
   );

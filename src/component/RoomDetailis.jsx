@@ -26,7 +26,7 @@ const RoomDetailis = ({ room }) => {
 
   return (
     <div className="flex gap-4">
-      <div className="p-4 bg-olive-100 shadow-xl rounded-2xl">
+      <div className="flex justify-center items-center p-4 bg-white shadow-xl rounded-2xl">
         <Image
           className="rounded-2xl"
           src={room.image}
@@ -111,7 +111,7 @@ const RoomDetailis = ({ room }) => {
           </Modal.Backdrop>
         </Modal>
 
-        {user && (
+        {user == user && (
           <>
             {/* <div className="flex justify-center gap-4 items-center flex-col "></div> */}
             <div className=" flex justify-center gap-4 items-center flex-col py-4 w-full bg-olive-100 h-auto mt-20 shadow-xl rounded-2xl">

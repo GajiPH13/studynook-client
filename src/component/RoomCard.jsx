@@ -10,7 +10,7 @@ const RoomCard = ({ room }) => {
   const { name, description, image, floor, capacity, price, amenities } = room || {};
 
   return (
-    <div className="w-full max-w-[400px]">
+    <div className="w-full max-w-105">
       <Card className="bg-white border border-neutral-100 shadow-sm hover:shadow-md transition-shadow duration-300 p-0 group overflow-hidden rounded-2xl">
         
         {/* Aspect Ratio Image Wrapper */}
@@ -39,7 +39,7 @@ const RoomCard = ({ room }) => {
           </div>
 
           {/* Room Description with Height Constraints */}
-          <p className="text-sm text-neutral-600 line-clamp-2 leading-relaxed min-h-[40px]">
+          <p className="text-sm truncate-100 text-neutral-600 line-clamp-2 leading-relaxed min-h-[40px]">
             {description}
           </p>
 

@@ -41,6 +41,7 @@ import { Inter, Poppins, DM_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "../component/NavBar.jsx";
 import NextThemeProvider from "../provider/NextThemeProvider.jsx";
+import Footer from "@/component/Footer";
 
 // Existing fonts
 const geistSans = Geist({
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
         <NextThemeProvider>
           <NavBar />
           <div className="flex-1 overflow-y-auto">{children}</div>
+          <Footer />
         </NextThemeProvider>
       </body>
     </html>

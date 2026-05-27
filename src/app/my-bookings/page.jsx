@@ -16,15 +16,15 @@ const MyBookingPage = async () => {
     console.log(data);
     return (
         <div className="max-w-7xl mx-auto mt-15 ">
-            <h2 className="text-2xl font-bold ">My Bookings</h2>
+            <h2 className="text-2xl font-bold mb-6 ">My Bookings</h2>
             
            {data.length > 0 && <BookingTable data={data} />} 
             {data.length === 0 && <div className="min-h-[70vh] flex items-center justify-center px-4">
-  <div className="w-full max-w-xl rounded-3xl border border-default-200 bg-white/70 backdrop-blur-md shadow-2xl p-10 text-center">
+  <div className="w-full max-w-7xl rounded-3xl border border-default-200 bg-white/70 backdrop-blur-md shadow-2xl p-10 text-center">
     
     {/* Icon */}
     <div className="flex justify-center mb-6">
-      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-100 to-amber-200 flex items-center justify-center shadow-md">
+      <div className="w-20 h-20 rounded-full bg-[#586235] flex items-center justify-center text-white shadow-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

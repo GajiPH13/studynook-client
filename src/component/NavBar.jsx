@@ -27,7 +27,7 @@ const Navbar = () => {
   //   }
   // }
   return (
-    <div className="border-b border-olive-200   shadow-xl sticky top-0 overflow-hidden bg-white opacity-95 z-50">
+    <div className="border-b border-olive-200   shadow-xl sticky top-0 overflow-hidden bg-olive-200 opacity-95 z-50">
       <nav className="flex justify-between items-center py-3 max-w-7xl mx-auto w-full">
         {/* Logo */}
         <Link href="/">

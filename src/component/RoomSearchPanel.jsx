@@ -45,7 +45,7 @@ const RoomSearchPanel = ({ rooms = [] }) => {
     <div className="flex w-full h-screen bg-neutral-50/50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 overflow-hidden transition-colors duration-200">
       
       {/* Left Sidebar Filters */}
-      <aside className="w-80 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 sticky top-0 h-full overflow-y-auto shrink-0 z-10 shadow-sm transition-colors duration-200">
+      <aside className="w-80 bg-olive-200 dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 sticky top-0 h-full overflow-y-auto shrink-0 z-10 shadow-sm transition-colors duration-200">
         <div className="p-6 space-y-6">
           <div>
             <h1 className="text-2xl font-black text-neutral-900 dark:text-neutral-50 tracking-tight">Search rooms</h1>
