@@ -83,7 +83,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${dmMono.variable} h-full antialiased`}
     >
-      <body>
+      <body className="bg-olive-100">
         <NextThemeProvider>
           <NavBar />
           <div className="flex-1 overflow-y-auto">{children}</div>

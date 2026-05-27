@@ -71,7 +71,7 @@ const Navbar = () => {
                 <Link href="/my-bookings">My Bookings</Link>
               </li>
               <li>
-                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/my-listings">My Listings</Link>
               </li>
               <li>
                 <Link href="/profile">Profile</Link>
@@ -200,8 +200,8 @@ const Navbar = () => {
               <Link href="/my-bookings" onClick={() => setIsOpen(false)}>
                 My Booking
               </Link>
-              <Link href="/dashboard" onClick={() => setIsOpen(false)}>
-                Dashboard
+              <Link href="/my-listings" onClick={() => setIsOpen(false)}>
+                My Listings
               </Link>
               <Link href="/profile" onClick={() => setIsOpen(false)}>
                 Profile

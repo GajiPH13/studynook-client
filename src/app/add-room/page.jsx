@@ -4,6 +4,8 @@
 //   description: "A Library Room Booking System for Students",
 // };
 import Amenities from "@/component/Amenities";
+import { authClient } from "@/lib/auth-client";
+
 import {
   Description,
   Surface,
@@ -17,18 +19,31 @@ import {
   Select,
   Card,
 } from "@heroui/react";
-import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const AddRoomPage = () => {
+  const userData = authClient.useSession();
+    const user = userData.data?.user;
+    // console.log(user);
+    // const { id } = user;
+    // console.log(user);
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const room = Object.fromEntries(formData);
     const amenities = formData.getAll("amenities");
 
-    room.amenities = amenities;
-    room.capacity = room.capacity ? Number(room.capacity) : 0;
-    room.price = room.price ? Number(room.price) : 0;
+    const myBookings = {
+    ...room,
+    userId: user?.id,
+    amenities,
+    capacity: room.capacity ? Number(room.capacity) : 0,
+    price: room.price ? Number(room.price) : 0,
+  };
+    // room.amenities = amenities;
+    // room.capacity = room.capacity ? Number(room.capacity) : 0;
+    // room.price = room.price ? Number(room.price) : 0;
 
     try {
       const res = await fetch("http://localhost:7000/rooms", {
@@ -36,7 +51,7 @@ const AddRoomPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(room),
+        body: JSON.stringify(myBookings),
       });
 
       if (!res.ok) {
@@ -45,8 +60,10 @@ const AddRoomPage = () => {
       }
 
       const data = await res.json();
+      toast.success("Room added successfully!");
       console.log("Room added:", data);
       e.target.reset();
+      
     } catch (error) {
       console.error("Add room failed:", error);
     }
@@ -107,6 +124,7 @@ const AddRoomPage = () => {
           </Surface>
         </div>
       </form>
+      <ToastContainer />
       </div>
 
       
