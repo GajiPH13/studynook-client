@@ -9,12 +9,12 @@ const Footer = () => {
       
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-white dark:bg-[#0a0a0b]" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-purple-500/5 via-transparent to-blue-500/5 dark:from-purple-500/10 dark:to-blue-500/10 blur-3xl" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-tr from-purple-500/5 via-transparent to-blue-500/5 dark:from-purple-500/10 dark:to-blue-500/10 blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-6 py-16">
         
         {/* Top Divider */}
-        <div className="mb-12 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-white/10" />
+        <div className="mb-12 h-px w-full bg-linear-to-r from-transparent via-gray-300 to-transparent dark:via-white/10" />
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-14 text-center md:text-left">

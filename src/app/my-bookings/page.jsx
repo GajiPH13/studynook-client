@@ -19,8 +19,8 @@ const MyBookingPage = async () => {
             <h2 className="text-2xl font-bold mb-6 ">My Bookings</h2>
             
            {data.length > 0 && <BookingTable data={data} />} 
-            {data.length === 0 && <div className="min-h-[70vh] flex items-center justify-center px-4">
-  <div className="w-full max-w-7xl rounded-3xl border border-default-200 bg-white/70 backdrop-blur-md shadow-2xl p-10 text-center">
+            {data.length === 0 && <div className="min-h-125 flex items-center justify-center px-4">
+  <div className="w-full   max-w-7xl rounded-3xl border border-default-200 bg-white/70 backdrop-blur-md shadow-2xl p-10 text-center">
     
     {/* Icon */}
     <div className="flex justify-center mb-6">
