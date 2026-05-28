@@ -11,7 +11,6 @@
 // import { Button, Modal, Surface, TextArea } from "@heroui/react";
 // import { Time, parseDate } from "@internationalized/date";
 
-
 // const EditModalPage = ({ user }) => {
 //   console.log(user);
 
@@ -22,7 +21,6 @@
 //     },
 //     body: JSON.stringify(user),
 //   });
-  
 
 //   // Destructure properties safely
 //   const { roomName, roomPrice, date: bookingDate, startTime, endTime, note } = user ;
@@ -56,7 +54,7 @@
 //           <Modal.Container placement="auto">
 //             <Modal.Dialog className="sm:max-w-md overflow-hidden rounded-xl border border-neutral-200 shadow-xl">
 //               <Modal.CloseTrigger />
-              
+
 //               <Modal.Header className="pb-4 pt-6 px-6 border-b border-neutral-100">
 //                 <div className="space-y-1">
 //                   <h2 className="text-xl font-bold text-neutral-900 tracking-tight">
@@ -74,11 +72,11 @@
 //               <Modal.Body className="p-6">
 //                 <Surface variant="default" className="bg-transparent border-0 p-0 shadow-none">
 //                   <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-                    
+
 //                     {/* Date Picker Section */}
 //                     <div className="w-full">
-//                       <DatePicker 
-//                         className="w-full" 
+//                       <DatePicker
+//                         className="w-full"
 //                         name="date"
 //                         defaultValue={getDefaultDate(bookingDate)}
 //                       >
@@ -128,8 +126,8 @@
 //                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 //                       {/* Start Time Field */}
 //                       <div className="w-full">
-//                         <TimeField 
-//                           className="w-full" 
+//                         <TimeField
+//                           className="w-full"
 //                           name="time"
 //                           defaultValue={getDefaultTime(startTime)}
 //                         >
@@ -149,8 +147,8 @@
 
 //                       {/* End Time Field */}
 //                       <div className="w-full">
-//                         <TimeField 
-//                           className="w-full" 
+//                         <TimeField
+//                           className="w-full"
 //                           name="end-time"
 //                           defaultValue={getDefaultTime(endTime)}
 //                         >
@@ -190,8 +188,8 @@
 //                     </div>
 
 //                     {/* Submit Button */}
-//                     <Button 
-//                       type="submit" 
+//                     <Button
+//                       type="submit"
 //                       className="w-full bg-[#4F5A2A] hover:bg-opacity-90 active:scale-[0.99] text-white py-3 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
 //                     >
 //                       Update Booking
@@ -224,12 +222,15 @@ import {
 import { Button, Modal, Surface, TextArea } from "@heroui/react";
 
 import { Time, parseDate } from "@internationalized/date";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const EditModalPage = ({ user }) => {
   // ---------------------------
   // Helpers
   // ---------------------------
-
+const router = useRouter();
   const getDefaultDate = (dateStr) => {
     try {
       return dateStr ? parseDate(dateStr) : undefined;
@@ -274,9 +275,7 @@ const EditModalPage = ({ user }) => {
   // State
   // ---------------------------
 
-  const [selectedDate, setSelectedDate] = useState(
-    getDefaultDate(bookingDate)
-  );
+  const [selectedDate, setSelectedDate] = useState(getDefaultDate(bookingDate));
 
   const [start, setStart] = useState(getDefaultTime(startTime));
 
@@ -295,9 +294,7 @@ const EditModalPage = ({ user }) => {
   const endMinutes = timeToMinutes(end);
 
   const durationInHours =
-    endMinutes > startMinutes
-      ? (endMinutes - startMinutes) / 60
-      : 0;
+    endMinutes > startMinutes ? (endMinutes - startMinutes) / 60 : 0;
 
   const totalCost = (durationInHours * Number(roomPrice || 0)).toFixed(2);
 
@@ -316,34 +313,39 @@ const EditModalPage = ({ user }) => {
         roomPrice,
         date: selectedDate?.toString(),
         startTime: `${String(start.hour).padStart(2, "0")}:${String(
-          start.minute
+          start.minute,
         ).padStart(2, "0")}`,
         endTime: `${String(end.hour).padStart(2, "0")}:${String(
-          end.minute
+          end.minute,
         ).padStart(2, "0")}`,
         note: specialNote,
         totalCost,
       };
 
+      const { data: tokenData } = await authClient.token();
+      console.log(tokenData);
       const res = await fetch(`http://localhost:7000/bookings/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(updatedBooking),
       });
 
       const data = await res.json();
-
+      
       if (res.ok) {
-        alert("Booking updated successfully!");
-        console.log(data);
+        toast.success("Booking updated successfully!");
+        router.push("/my-bookings");
+        router.refresh();
+        // console.log(data);
       } else {
         alert(data.message || "Failed to update booking");
       }
     } catch (error) {
       console.error(error);
-      alert("Something went wrong!");
+      toast.error("Something went wrong!");
     } finally {
       setLoading(false);
     }
@@ -384,10 +386,7 @@ const EditModalPage = ({ user }) => {
                   variant="default"
                   className="bg-transparent border-0 p-0 shadow-none"
                 >
-                  <form
-                    onSubmit={handleUpdateBooking}
-                    className="space-y-5"
-                  >
+                  <form onSubmit={handleUpdateBooking} className="space-y-5">
                     {/* Date Picker */}
                     <div className="w-full">
                       <DatePicker
@@ -521,19 +520,13 @@ const EditModalPage = ({ user }) => {
                     {/* Booking Summary */}
                     <div className="space-y-3 p-4 bg-neutral-50 rounded-xl border border-neutral-100 shadow-sm">
                       <div className="flex justify-between text-sm">
-                        <span className="text-neutral-600">
-                          Hourly Rate
-                        </span>
+                        <span className="text-neutral-600">Hourly Rate</span>
 
-                        <span className="font-semibold">
-                          ${roomPrice}
-                        </span>
+                        <span className="font-semibold">${roomPrice}</span>
                       </div>
 
                       <div className="flex justify-between text-sm">
-                        <span className="text-neutral-600">
-                          Duration
-                        </span>
+                        <span className="text-neutral-600">Duration</span>
 
                         <span className="font-semibold">
                           {durationInHours} hour(s)

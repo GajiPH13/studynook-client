@@ -21,13 +21,12 @@ import {
 } from "@heroui/react";
 import { ToastContainer, toast } from "react-toastify";
 
-
 const AddRoomPage = () => {
   const userData = authClient.useSession();
-    const user = userData.data?.user;
-    // console.log(user);
-    // const { id } = user;
-    // console.log(user);
+  const user = userData.data?.user;
+  // console.log(user);
+  // const { id } = user;
+  // console.log(user);
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -35,21 +34,23 @@ const AddRoomPage = () => {
     const amenities = formData.getAll("amenities");
 
     const myBookings = {
-    ...room,
-    userId: user?.id,
-    amenities,
-    capacity: room.capacity ? Number(room.capacity) : 0,
-    price: room.price ? Number(room.price) : 0,
-  };
+      ...room,
+      userId: user?.id,
+      amenities,
+      capacity: room.capacity ? Number(room.capacity) : 0,
+      price: room.price ? Number(room.price) : 0,
+    };
     // room.amenities = amenities;
     // room.capacity = room.capacity ? Number(room.capacity) : 0;
     // room.price = room.price ? Number(room.price) : 0;
-
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData);
     try {
       const res = await fetch("http://localhost:7000/rooms", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(myBookings),
       });
@@ -63,7 +64,6 @@ const AddRoomPage = () => {
       toast.success("Room added successfully!");
       console.log("Room added:", data);
       e.target.reset();
-      
     } catch (error) {
       console.error("Add room failed:", error);
     }
@@ -77,11 +77,8 @@ const AddRoomPage = () => {
           Share your study space with the world. You can always change it later.
         </p>
       </div>
-    
-    
-      
-      
-         <form onSubmit={onSubmit}>
+
+      <form onSubmit={onSubmit}>
         <div className="  shadow-md ">
           <Surface className="flex w-full min-w-85 flex-col gap-4 rounded-3xl p-6">
             <TextField name="name" variant="secondary">
@@ -120,15 +117,14 @@ const AddRoomPage = () => {
               <Amenities />
               <div></div>
             </div>
-            <Button type="submit" className={"bg-[#5F6F3E]"}>Add Room</Button>
+            <Button type="submit" className={"bg-[#5F6F3E]"}>
+              Add Room
+            </Button>
           </Surface>
         </div>
       </form>
       <ToastContainer />
-      </div>
-
-      
-     
+    </div>
   );
 };
 

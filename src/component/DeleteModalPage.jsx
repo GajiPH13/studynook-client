@@ -1,6 +1,7 @@
 
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
@@ -9,14 +10,20 @@ const DeleteModalPage = ({ id }) => {
   const router = useRouter();
 
   const handelDelete = async () => {
+    const {data:tokenData} = await authClient.token()
+    console.log(tokenData);
     try {
       const res = await fetch(`http://localhost:7000/bookings/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
       });
 
       const result = await res.json();
 
-      console.log(result);
+      // console.log(result);
 
       if (result.deletedCount > 0) {
         router.push("/my-bookings");

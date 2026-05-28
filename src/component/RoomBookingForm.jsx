@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@heroui/react";
 import React, { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
@@ -33,12 +34,14 @@ const RoomBookingForm = ({ room}) => {
       userImage: user?.image
     };
     // console.log(bookingData);
-
+    const {data:tokenData} = await authClient.token()
+    console.log(tokenData);
     try {
       const res = await fetch("http://localhost:7000/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
         },
         body: JSON.stringify(bookingData),
       });
@@ -214,7 +217,7 @@ const RoomBookingForm = ({ room}) => {
     w-full
     py-3.5
     rounded-2xl
-    bg-gradient-to-r from-[#586235] to-[#6f7b46]
+    bg-linear-to-r from-[#586235] to-[#6f7b46]
     text-white
     font-semibold
     text-base

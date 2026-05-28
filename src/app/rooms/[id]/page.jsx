@@ -6,9 +6,20 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 import Link from "next/link";
 import RoomCard from "@/component/RoomCard";
 import RoomDetailis from "@/component/RoomDetailis";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 const RoomDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`http://localhost:7000/rooms/${id}`);
+  const {token} = await  auth.api.getToken({
+    headers: await headers(),
+  })
+  // console.log(token);
+  const res = await fetch(`http://localhost:7000/rooms/${id}`,{
+    headers: {
+      authorization: `Bearer ${token}`,
+    }
+  });
+
   const room = await res.json();
   // console.log(room);
   return (
