@@ -8,12 +8,14 @@ import RoomCard from "@/component/RoomCard";
 import RoomDetailis from "@/component/RoomDetailis";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+
 // import { authClient } from "@/lib/auth-client";
 
 const RoomDetailsPage = async ({ params }) => {
   // const userData = authClient.useSession();
   //   const user = userData.data?.user;
     // console.log("Current User",user);
+  
   const { id } = await params;
   const {token} = await  auth.api.getToken({
     headers: await headers(),
@@ -28,10 +30,10 @@ const RoomDetailsPage = async ({ params }) => {
   const room = await res.json();
   //  console.log("ROOM",room);
   return (
-    <div className="max-w-7xl mx-auto mt-15 ">
+    <div className="max-w-7xl mx-auto mt-15 px-4 ">
       <div className=" ">
         <p className="text-[#4F5A2A] cursor-pointer flex  mb-4">
-          <Link href={"/rooms"} className="flex gap-4 items-center">
+          <Link href= "/rooms" className="flex gap-4 items-center">
             <BsArrowLeftCircle
               size={20}
               className="text-[#4F5A2A] cursor-pointer"

@@ -82,7 +82,7 @@ import { HiArrowRight } from "react-icons/hi2";
 
 const Banner = () => {
   return (
-    <section className="bg-olive-50 py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-olive-50 py-1 md:py-20  lg:px-8">
       <div className="max-w-7xl mx-auto relative rounded-3xl overflow-hidden shadow-xl group/banner">
         
         {/* Background Image Container with Responsive Sizing */}

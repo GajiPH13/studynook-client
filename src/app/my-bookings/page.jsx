@@ -13,7 +13,7 @@ const MyBookingPage = async () => {
         headers: await headers(),
       })
     const user = session?.user;
-    console.log(user);
+    // console.log(user);
 
     const res = await fetch(`http://localhost:7000/my-bookings/${user?.id}`,{
         headers: {
@@ -21,7 +21,7 @@ const MyBookingPage = async () => {
         }
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     return (
         <div className="max-w-7xl mx-auto mt-15 ">
             <h2 className="text-2xl font-bold mb-6 ">My Bookings</h2>

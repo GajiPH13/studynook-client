@@ -6,7 +6,7 @@ import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 const DeleteMyListing = ({ id }) => {
-   console.log("ID As Props",id);
+  //  console.log("ID As Props",id);
 //   const _id = id;
 //   const userData = authClient.useSession();
     // const user = userData.data?.user;

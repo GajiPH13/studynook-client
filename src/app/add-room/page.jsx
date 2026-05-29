@@ -70,61 +70,154 @@ const AddRoomPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto mt-15 ">
-      <div className="mb-10">
-        <h1 className="text-2xl font-bold text-[#4F5A2A] ">Add a New Room</h1>
-        <p>
-          Share your study space with the world. You can always change it later.
-        </p>
-      </div>
+    // <div className="max-w-5xl mx-auto mt-15 ">
+    //   <div className="mb-10">
+    //     <h1 className="text-2xl font-bold text-[#4F5A2A] ">Add a New Room</h1>
+    //     <p>
+    //       Share your study space with the world. You can always change it later.
+    //     </p>
+    //   </div>
 
-      <form onSubmit={onSubmit}>
-        <div className="  shadow-md ">
-          <Surface className="flex w-full min-w-85 flex-col gap-4 rounded-3xl p-6">
-            <TextField name="name" variant="secondary">
-              <Label>Room name</Label>
-              <Input className="w-full" />
-            </TextField>
-            <TextField name="description" variant="secondary">
-              <Label>Description</Label>
-              <TextArea className="w-full" rows={4} />
-            </TextField>
-            <TextField name="image" type="url" variant="secondary">
-              <Label>Image URL</Label>
-              <Input className="w-full" placeholder="https://..." />
-            </TextField>
-            <div className="flex gap-4">
-              <TextField name="floor" type="text" variant="secondary">
-                <Label>Floor</Label>
-                <Input className="w-50" placeholder="e.g 3rd Floor" />
-              </TextField>
-              <TextField name="capacity" type="number" variant="secondary">
-                <Label htmlFor="input-type-number">Capacity</Label>
-                <Input
-                  id="input-type-number"
-                  min={0}
-                  placeholder="1"
-                  type="number"
-                />
-              </TextField>
-              <TextField name="price" type="number" variant="secondary">
-                <Label>Hourly Rate ($)</Label>
-                <Input className="w-50" placeholder="e.g 3rd Floor" />
-              </TextField>
-            </div>
-            <div>
-              <Label>Amenities</Label>
-              <Amenities />
-              <div></div>
-            </div>
-            <Button type="submit" className={"bg-[#5F6F3E]"}>
-              Add Room
-            </Button>
-          </Surface>
+    //   <form onSubmit={onSubmit}>
+    //     <div className="  shadow-md ">
+    //       <Surface className="flex w-full min-w-85 flex-col gap-4 rounded-3xl p-6">
+    //         <TextField name="name" variant="secondary">
+    //           <Label>Room name</Label>
+    //           <Input className="w-full" />
+    //         </TextField>
+    //         <TextField name="description" variant="secondary">
+    //           <Label>Description</Label>
+    //           <TextArea className="w-full" rows={4} />
+    //         </TextField>
+    //         <TextField name="image" type="url" variant="secondary">
+    //           <Label>Image URL</Label>
+    //           <Input className="w-full" placeholder="https://..." />
+    //         </TextField>
+    //         <div className="flex gap-4">
+    //           <TextField name="floor" type="text" variant="secondary">
+    //             <Label>Floor</Label>
+    //             <Input className="w-50" placeholder="e.g 3rd Floor" />
+    //           </TextField>
+    //           <TextField name="capacity" type="number" variant="secondary">
+    //             <Label htmlFor="input-type-number">Capacity</Label>
+    //             <Input
+    //               id="input-type-number"
+    //               min={0}
+    //               placeholder="1"
+    //               type="number"
+    //             />
+    //           </TextField>
+    //           <TextField name="price" type="number" variant="secondary">
+    //             <Label>Hourly Rate ($)</Label>
+    //             <Input className="w-50" placeholder="e.g 3rd Floor" />
+    //           </TextField>
+    //         </div>
+    //         <div>
+    //           <Label>Amenities</Label>
+    //           <Amenities />
+    //           <div></div>
+    //         </div>
+    //         <Button type="submit" className={"bg-[#5F6F3E]"}>
+    //           Add Room
+    //         </Button>
+    //       </Surface>
+    //     </div>
+    //   </form>
+    //   <ToastContainer />
+    // </div>
+    <div className="max-w-5xl mx-auto mt-10 sm:mt-12 lg:mt-15 px-4 sm:px-6 lg:px-0">
+
+  {/* ================= HEADER ================= */}
+  <div className="mb-8 sm:mb-10">
+    <h1 className="text-xl sm:text-2xl font-bold text-[#4F5A2A]">
+      Add a New Room
+    </h1>
+    <p className="text-sm sm:text-base text-neutral-600">
+      Share your study space with the world. You can always change it later.
+    </p>
+  </div>
+
+  {/* ================= FORM ================= */}
+  <form onSubmit={onSubmit}>
+    <div className="shadow-md">
+
+      <Surface className="flex w-full flex-col gap-4 sm:gap-5 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+
+        {/* Room Name */}
+        <TextField name="name" variant="secondary">
+          <Label>Room name</Label>
+          <Input className="w-full" />
+        </TextField>
+
+        {/* Description */}
+        <TextField name="description" variant="secondary">
+          <Label>Description</Label>
+          <TextArea className="w-full" rows={4} />
+        </TextField>
+
+        {/* Image URL */}
+        <TextField name="image" type="url" variant="secondary">
+          <Label>Image URL</Label>
+          <Input
+            className="w-full"
+            placeholder="https://..."
+          />
+        </TextField>
+
+        {/* Floor + Capacity + Price */}
+        <div className="flex flex-col sm:flex-row gap-4">
+
+          <TextField name="floor" type="text" variant="secondary" className="w-full">
+            <Label>Floor</Label>
+            <Input
+              className="w-full"
+              placeholder="e.g 3rd Floor"
+            />
+          </TextField>
+
+          <TextField name="capacity" type="number" variant="secondary" className="w-full">
+            <Label htmlFor="input-type-number">Capacity</Label>
+            <Input
+              id="input-type-number"
+              min={0}
+              placeholder="1"
+              type="number"
+              className="w-full"
+            />
+          </TextField>
+
+          <TextField name="price" type="number" variant="secondary" className="w-full">
+            <Label>Hourly Rate ($)</Label>
+            <Input
+              className="w-full"
+              placeholder="e.g 10"
+              type="number"
+            />
+          </TextField>
+
         </div>
-      </form>
-      <ToastContainer />
+
+        {/* Amenities */}
+        <div className="space-y-2">
+          <Label>Amenities</Label>
+          <Amenities />
+        </div>
+
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          className="bg-[#5F6F3E] w-full sm:w-auto"
+        >
+          Add Room
+        </Button>
+
+      </Surface>
     </div>
+  </form>
+
+  <ToastContainer />
+
+</div>
   );
 };
 

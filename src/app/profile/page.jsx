@@ -12,7 +12,7 @@ import { UpdateUserForm } from "@/component/Profile-modal/Profile";
 const ProfilePage = () => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
-  console.log(user);
+  // console.log(user);
   return (
     // <div>
     //   <h1>Profile Page</h1>
