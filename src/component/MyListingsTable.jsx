@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, Table } from "@heroui/react";
 
-import DeleteModalPage from "./DeleteModalPage";
+
 import DeleteMyListing from "./DeleteMyListing";
+
 // import EditModalPage from "./EditModalPage";
 
-const MyListingsTable = ({ data = [] }) => {
+const MyListingsTable = ({ data  }) => {
     console.log("TableData",data);
   return (
     <div>
@@ -14,7 +15,7 @@ const MyListingsTable = ({ data = [] }) => {
         <Table.ScrollContainer>
           <Table.Content
             aria-label="Booking table"
-            className="min-w-[600px]"
+            className="min-w-150"
           >
             <Table.Header>
               <Table.Column isRowHeader>Name</Table.Column>
@@ -52,7 +53,7 @@ const MyListingsTable = ({ data = [] }) => {
                         width={100}
                         height={100}
                         className="rounded object-cover"
-                        priority={false}
+                        priority
                       />
                     </Table.Cell>
 
@@ -63,11 +64,12 @@ const MyListingsTable = ({ data = [] }) => {
 
                     <Table.Cell>
                       <div className="flex gap-3">
-                        <Link href={`/rooms/${userId}`}>
+                        <Link href={`/rooms/${_id}`}>
                           <Button variant="outline">
                             Details
                           </Button>
                         </Link>
+                        
 
                         {/* <EditModalPage user={user} /> */}
 

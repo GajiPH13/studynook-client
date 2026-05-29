@@ -19,11 +19,11 @@ const DeleteMyListing = ({ id }) => {
         
         method: "DELETE",
       });
-      console.log("DELETED_id",res);
+      // console.log("DELETED_id",res);
 
       const result = await res.json();
 
-      console.log("DELETED",result);
+      // console.log("DELETED",result);
 
       if (result.deletedCount > 0) {
         router.push("/my-listings");
@@ -41,7 +41,7 @@ const DeleteMyListing = ({ id }) => {
 
         <AlertDialog.Backdrop>
           <AlertDialog.Container>
-            <AlertDialog.Dialog className="sm:max-w-[400px]">
+            <AlertDialog.Dialog className="sm:max-w-100">
               <AlertDialog.CloseTrigger />
 
               <AlertDialog.Header>

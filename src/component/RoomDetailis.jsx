@@ -33,6 +33,7 @@ const RoomDetailis = ({ room }) => {
           alt={room.name}
           width={800}
           height={600}
+          priority
         />
       </div>
       <div className="  bg-white rounded-2xl shadow-xl p-4 space-y-6">

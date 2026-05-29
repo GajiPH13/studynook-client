@@ -12,7 +12,7 @@ const BookingTable = ({ data = [] }) => {
         <Table.ScrollContainer>
           <Table.Content
             aria-label="Booking table"
-            className="min-w-[600px]"
+            className="min-w-150"
           >
             <Table.Header>
               <Table.Column isRowHeader>Name</Table.Column>
@@ -50,7 +50,7 @@ const BookingTable = ({ data = [] }) => {
                         width={100}
                         height={100}
                         className="rounded object-cover"
-                        priority={false}
+                        priority
                       />
                     </Table.Cell>
 

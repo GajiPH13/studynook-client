@@ -16,10 +16,10 @@ export function UpdateUserForm() {
         await authClient.updateUser({name, image});
     }
   return (
-    <Modal>
-      <Button variant="secondary"><BiEdit/> Update  Profile</Button>
+    <Modal className="border-2 border-olive-200">
+      <Button className={"border-2 border-olive-200 bg-[#5B6B2F]"}><BiEdit/> Update  Profile</Button>
       <Modal.Backdrop>
-        <Modal.Container placement="auto">
+        <Modal.Container placement="auto" >
           <Modal.Dialog className="sm:max-w-md">
             <Modal.CloseTrigger />
             <Modal.Header>
@@ -54,5 +54,8 @@ export function UpdateUserForm() {
         </Modal.Container>
       </Modal.Backdrop>
     </Modal>
+    
+
+    
   );
 }

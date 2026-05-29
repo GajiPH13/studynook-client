@@ -39,7 +39,7 @@ const RoomCard = ({ room }) => {
           </div>
 
           {/* Room Description with Height Constraints */}
-          <p className="text-sm truncate-100 text-neutral-600 line-clamp-2 leading-relaxed min-h-[40px]">
+          <p className="text-sm truncate-100 text-neutral-600 line-clamp-2 leading-relaxed min-h-10">
             {description}
           </p>
 
@@ -56,7 +56,7 @@ const RoomCard = ({ room }) => {
           </div>
           
           {/* Amenities Badges Block */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 min-h-[32px]">
+          <div className="flex flex-wrap items-center gap-2 pt-1 min-h-8">
             {(() => {
               let amenitiesList = [];
               if (Array.isArray(amenities)) amenitiesList = amenities;
