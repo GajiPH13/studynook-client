@@ -247,7 +247,7 @@ const RoomSearchPanel = ({ rooms = [] }) => {
           </h3>
 
           <p className="mt-1 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
-            We couldn't find matches. Try adjusting keywords or filters.
+            We couldn&apos;t find matches. Try adjusting keywords or filters.
           </p>
         </div>
       )}

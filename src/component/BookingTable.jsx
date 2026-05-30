@@ -90,7 +90,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, Table } from "@heroui/react";
 
-import DeleteModalPage from "./DeleteModalPage";
+import DeleteModalPage from "./DeleteBookingPage";
 import EditModalPage from "./EditModalPage";
 
 const BookingTable = ({ data = [] }) => {

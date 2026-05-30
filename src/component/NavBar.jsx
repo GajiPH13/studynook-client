@@ -125,10 +125,10 @@ const Navbar = () => {
                       <Label>{user.email}</Label>
                     </Dropdown.Item>
                     <Dropdown.Item id="copy-link" textValue="Copy link">
-                      <Label>My Listings</Label>
+                     <Link href="/my-listings"> <Label>My Listings</Label></Link>
                     </Dropdown.Item>
                     <Dropdown.Item id="edit-file" textValue="Edit file">
-                      <Label>My Bookings</Label>
+                      <Link href="/my-bookings"><Label>My Bookings</Label></Link>
                     </Dropdown.Item>
                     <Dropdown.Item
                       id="delete-file"

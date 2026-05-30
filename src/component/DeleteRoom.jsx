@@ -1,19 +1,19 @@
-
 "use client";
 
 import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
+import  { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-const DeleteModalPage = ({ id }) => {
-  // console.log(id);
+const DeleteRoom = ({ id }) => {
+   console.log(id);
   const router = useRouter();
 
   const handelDelete = async () => {
     const {data:tokenData} = await authClient.token()
     console.log(tokenData);
     try {
-      const res = await fetch(`http://localhost:7000/bookings/${id}`, {
+      const res = await fetch(`http://localhost:7000/rooms/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,8 @@ const DeleteModalPage = ({ id }) => {
       // console.log(result);
 
       if (result.deletedCount > 0) {
-        router.push("/my-bookings");
+        toast.success("Room Deleted Successfully!");
+        router.push("/rooms");
         router.refresh();
       }
     } catch (error) {
@@ -41,20 +42,20 @@ const DeleteModalPage = ({ id }) => {
 
         <AlertDialog.Backdrop>
           <AlertDialog.Container>
-            <AlertDialog.Dialog className="sm:max-w-[400px]">
+            <AlertDialog.Dialog className="sm:max-w-100">
               <AlertDialog.CloseTrigger />
 
               <AlertDialog.Header>
                 <AlertDialog.Icon status="danger" />
 
                 <AlertDialog.Heading>
-                  Delete Booking permanently?
+                  Delete Room permanently?
                 </AlertDialog.Heading>
               </AlertDialog.Header>
 
               <AlertDialog.Body>
                 <p>
-                  This will permanently delete <strong>Booking</strong>
+                  This will permanently delete <strong>Room </strong>
                   and all of its data.
                 </p>
               </AlertDialog.Body>
@@ -69,7 +70,7 @@ const DeleteModalPage = ({ id }) => {
                   slot="close"
                   variant="danger"
                 >
-                  Delete Booking
+                  Delete Room
                 </Button>
               </AlertDialog.Footer>
             </AlertDialog.Dialog>
@@ -80,4 +81,4 @@ const DeleteModalPage = ({ id }) => {
   );
 };
 
-export default DeleteModalPage;
+export default DeleteRoom;

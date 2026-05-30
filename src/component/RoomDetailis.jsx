@@ -16,7 +16,7 @@ const RoomDetailis = ({ room }) => {
     return <p>Loading...</p>; // or null
   }
   const { name: userName, email, image } = user;
-  console.log(user);
+  // console.log(user);
   // const router = useRouter();
   // const onSubmit = async (e) => {
   //   e.preventDefault();

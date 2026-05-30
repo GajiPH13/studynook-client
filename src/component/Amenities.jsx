@@ -9,7 +9,7 @@ const amenities = [
   "Air Conditioning",
 ];
 
-export default function Amenities() {
+export default function Amenities({id}) {
   return (
    
      <div className="flex flex-wrap gap-3">
